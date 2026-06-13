@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>MaterniteCare - Espace Patiente</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Inter:wght@400;500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="appbar">
+    <div class="appbar__brand">
+        <span class="appbar__logo" aria-hidden="true">+</span>
+        <div class="appbar__titles">
+            <h1>MaterniteCare</h1>
+            <p>Carnet de suivi de grossesse</p>
+        </div>
+    </div>
+    <button type="button" id="btnLogout" class="btn-logout" style="display: none;">Se déconnecter</button>
+</header>
+<div class="pulse-divider" aria-hidden="true"></div>
+
+<main class="container">
+
+    <!-- Zone de connexion -->
+    <section id="loginZone" class="login-card">
+        <div class="login-card__icon" aria-hidden="true">🤰</div>
+        <h2>Accédez à votre carnet</h2>
+        <p class="lead">Entrez le code dossier remis lors de votre première consultation pour suivre votre grossesse.</p>
+
+        <label for="codeDossier">Code dossier</label>
+        <input type="text" id="codeDossier" placeholder="MAT-2026-001" autocomplete="off">
+        <div id="loginError" class="error"></div>
+        <button type="button" id="btnLogin">Accéder à mon dossier</button>
+
+        <p class="info">💡 Votre code dossier figure sur votre fiche de première consultation (ex. MAT-2026-001).</p>
+    </section>
+
+    <!-- Dashboard patiente (caché au départ) -->
+    <section id="dashboardZone" style="display: none;">
+
+        <div class="carnet-header">
+            <p class="carnet-header__eyebrow">Bonjour</p>
+            <h2 id="patientNom"></h2>
+            <div class="carnet-meta">
+                <span class="carnet-stamp">Dossier n° <span id="patientDossier"></span></span>
+                <span class="carnet-tag" id="patientQuartier"></span>
+            </div>
+        </div>
+
+        <nav class="tabs" role="tablist" aria-label="Sections du carnet">
+            <button type="button" class="tab is-active" data-tab="rdv" role="tab" aria-selected="true">
+                <span class="tab__icon" aria-hidden="true">📅</span> Rendez-vous
+            </button>
+            <button type="button" class="tab" data-tab="vaccins" role="tab" aria-selected="false">
+                <span class="tab__icon" aria-hidden="true">💉</span> Vaccins
+            </button>
+            <button type="button" class="tab" data-tab="documents" role="tab" aria-selected="false">
+                <span class="tab__icon" aria-hidden="true">📄</span> Documents
+            </button>
+            <button type="button" class="tab" data-tab="upload" role="tab" aria-selected="false">
+                <span class="tab__icon" aria-hidden="true">📤</span> Déposer
+            </button>
+        </nav>
+
+        <div class="panel is-active" id="panel-rdv" role="tabpanel">
+            <h3>Prochains rendez-vous</h3>
+            <div id="rdvList" class="loading">Chargement…</div>
+        </div>
+
+        <div class="panel" id="panel-vaccins" role="tabpanel">
+            <h3>Vaccinations</h3>
+            <div id="vaccinList" class="loading">Chargement…</div>
+        </div>
+
+        <div class="panel" id="panel-documents" role="tabpanel">
+            <h3>Mes documents</h3>
+            <div id="documentList" class="loading">Chargement…</div>
+        </div>
+
+        <div class="panel" id="panel-upload" role="tabpanel">
+            <h3>Déposer un examen</h3>
+            <div class="upload-zone">
+                <div class="upload-zone__icon" aria-hidden="true">📤</div>
+                <input type="file" id="fileInput" accept=".jpg,.jpeg,.png,.pdf">
+                <p class="info">Formats acceptés : JPG, PNG, PDF.</p>
+            </div>
+            <button type="button" id="btnUpload">Envoyer le document</button>
+            <div id="uploadStatus" class="upload-feedback"></div>
+        </div>
+
+    </section>
+</main>
+
+<script src="js/portail.js"></script>
+</body>
+</html>
