@@ -1,23 +1,85 @@
-#  MaternitéCare – API REST & Base PostgreSQL
+# MaterniteCare – Suivi obstétrical
 
-> Revue intermédiaire – 08 juin 2026  
-> Contenu : structure PostgreSQL hospitalière + squelette API REST de gestion des dossiers.
+## État d’avancement (12/06/2026)
 
-##  Contenu du dépôt
+### Fonctionnalités réalisées
 
-- **Base de données PostgreSQL** : schéma relationnel complet (13 tables, types énumérés, clés étrangères, index)
-- **Données de seed** : 20 patientes réalistes (Pointe-Noire, quartiers Tié-Tié, Mpaka, Lumumba…), workspaces, lits, personnel, grossesses, admissions, vaccinations avec numéros de lot
-- **API REST (Node.js/Express)** : routes pour la gestion des dossiers patients
-- **Diagramme ERD** : visualisation du schéma (`maternitecare.mdj et maternitecare.jpeg `)
+#### Base de données PostgreSQL
 
-##  Installation et lancement
+* Base de données `MaterniteCare_DB` opérationnelle.
+* Tables pour la gestion des patientes, grossesses, admissions, rendez-vous, vaccinations, documents médicaux et personnel soignant.
+* Contraintes, index et clés étrangères configurés.
+* Vues SQL pour limiter l'accès aux données sensibles.
+* Données de test intégrées.
 
-### Prérequis
-- PostgreSQL ≥ 14
-- Node.js ≥ 18
+#### API REST (Node.js / Express)
 
-### 1. Créer la base de données
-```bash
-createdb maternitecare
-psql -U postgres -d maternitecare -f backend/database/01_schema.sql
-psql -U postgres -d maternitecare -f backend/database/02_seed.sql
+Routes actuellement disponibles :
+
+* `GET /api/health`
+* `GET /api/patients`
+* `GET /api/patients/:id`
+* `GET /api/workspaces/:id/patients`
+* `GET /api/search/lot/:numero_lot`
+
+Fonctionnalités :
+
+* Connexion PostgreSQL fonctionnelle.
+* Gestion des erreurs.
+* Configuration via variables d'environnement.
+
+#### Sécurité
+
+* Mots de passe chiffrés avec bcrypt.
+* Vues SQL de protection des données.
+* Table `log_acces` pour la traçabilité.
+* Préparation du contrôle des fichiers uploadés.
+
+---
+
+### Preuve de connexion à PostgreSQL
+
+![Connexion PostgreSQL réussie](./docs/pg_connection.png)
+
+*Interface pgAdmin4 montrant la base `MaterniteCare_DB` et la table `patiente` avec ses données.*
+
+---
+
+### Historique
+
+| Commit   | Description                          |
+| -------- | ------------------------------------ |
+| Commit 1 | Structure SQL et données initiales   |
+| Commit 2 | Sécurité, permissions et traçabilité |
+| Commit 3 | API REST connectée à PostgreSQL      |
+
+---
+
+### État actuel
+
+**Statut :** Base de données terminée et API REST opérationnelle.
+
+**Progression estimée :** 70 %
+
+---
+
+## Structure du projet
+
+```text
+MaterniteCare/
+├── backend/
+│   ├── database/
+│   │   ├── 00_reset.sql
+│   │   ├── 01_schema.sql
+│   │   └── 02_seed.sql
+│   ├── server.js
+│   ├── package.json
+│   └── .env.example
+│
+├── docs/
+│   └── pg_connection.png
+│
+├── frontend/
+│
+└── README.md
+```
