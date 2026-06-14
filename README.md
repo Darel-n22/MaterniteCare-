@@ -45,7 +45,9 @@ Fonctionnalités :
 - Badges de statut (rendez-vous, rappels vaccinaux).
 - Expérience utilisateur soignée (états vides, feedback, animations).
 
-#### Frontend – Dashboard soignant (commit 7)
+#### Frontend – Dashboard soignant
+
+**Commit 7 – Structure HTML/CSS**
 
 - Structure HTML/CSS du tableau de bord.
 - Design inspiré du portail patient (charte graphique cohérente).
@@ -53,7 +55,17 @@ Fonctionnalités :
 - Grille d’affichage des patientes (cartes).
 - Barre de recherche par lot de vaccin (interface).
 - Statistiques visuelles (patientes actives, urgences, dossiers critiques).
-- Composants réutilisables et adaptables (grille, badges, cartes).
+
+**Commit 8 – Connexion JWT et affichage des patientes**
+
+- Intégration de l’API d’authentification (`POST /api/auth/login`).
+- Stockage du token JWT dans `localStorage`.
+- Récupération et affichage de la liste des patientes via `GET /api/patients`.
+- Injection dynamique des cartes patientes avec :
+  - Nom, prénom, numéro de dossier, quartier.
+  - Niveau de risque (normal, modéré, élevé) avec badge coloré.
+- Déconnexion (suppression du token et retour à l’écran de connexion).
+- Gestion des erreurs (identifiants invalides, serveur indisponible).
 
 #### Sécurité
 
@@ -83,7 +95,8 @@ Fonctionnalités :
 | Commit 4 | Authentification JWT (login, middleware)                          |
 | Commit 5 | Upload de documents médicaux (multer, routes)                     |
 | Commit 6 | Portail patient (HTML/CSS/JS, onglets, upload, badges)            |
-| Commit 7 | Dashboard soignant – structure HTML/CSS (inspirée du portail)     |
+| Commit 7 | Dashboard soignant – structure HTML/CSS                           |
+| Commit 8 | Dashboard soignant – connexion JWT et affichage des patientes     |
 
 > **Note** : Le commit 3 a été perdu lors d’une manipulation Git. L’ensemble de ses fonctionnalités (connexion DB, routes patients) est présent et opérationnel dans les commits 4, 5 et 6. Aucune régression n’est à signaler.
 
@@ -91,9 +104,9 @@ Fonctionnalités :
 
 ### État actuel
 
-**Statut :** Base de données terminée, API REST complète, portail patient opérationnel, structure du dashboard soignant prête.
+**Statut :** Base de données terminée, API REST complète, portail patient opérationnel, dashboard soignant fonctionnel (connexion + affichage patientes).
 
-**Progression estimée :** 88 %
+**Progression estimée :** 92 %
 
 ---
 
@@ -127,4 +140,4 @@ MaterniteCare/
 ├── docs/
 │   └── pg_connection.png
 │
-└── README.md  
+└── README.md
