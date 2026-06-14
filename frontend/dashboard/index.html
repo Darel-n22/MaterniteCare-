@@ -21,7 +21,11 @@
     </div>
     <button type="button" id="btnLogout" class="btn-logout" style="display: none;">Se déconnecter</button>
 </header>
-<div class="pulse-divider" aria-hidden="true"></div>
+<div class="pulse-divider" aria-hidden="true">
+    <svg viewBox="0 0 160 26" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 13 H44 L54 4 L66 24 L76 13 H160 L204 13 L214 4 L226 24 L236 13 H320" fill="none" stroke="#D88C9A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</div>
 
 <main class="container">
 
@@ -61,8 +65,8 @@
 
         <div class="stats-row">
             <div class="stat-card"><span class="stat-value" id="statTotal">0</span> <span class="stat-label">Patientes actives</span></div>
-            <div class="stat-card"><span class="stat-value" id="statRouge">0</span> <span class="stat-label">Urgences</span></div>
-            <div class="stat-card"><span class="stat-value" id="statCritique">0</span> <span class="stat-label">Dossiers critiques</span></div>
+            <div class="stat-card stat-card--alert"><span class="stat-value" id="statRouge">0</span> <span class="stat-label">Urgences</span></div>
+            <div class="stat-card stat-card--critical"><span class="stat-value" id="statCritique">0</span> <span class="stat-label">Dossiers critiques</span></div>
         </div>
 
         <div id="patientList" class="patient-grid">
